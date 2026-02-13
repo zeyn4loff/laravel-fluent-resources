@@ -2,6 +2,8 @@
 
 namespace Zeyn4loff\FluentResources\Traits;
 
+use Closure;
+
 trait HasFluentScopes
 {
     public function hide(array $fields): static
@@ -30,17 +32,15 @@ trait HasFluentScopes
         return $this;
     }
 
-    public function scope(string $relation, callable $callback): static
+    public function scope(string $relation, Closure $callback): static
     {
-        if (isset($this->modifiers['scopes'][$relation])) {
-            $existing = $this->modifiers['scopes'][$relation];
-            $this->modifiers['scopes'][$relation] = function($instance) use ($existing, $callback) {
-                $existing($instance);
-                $callback($instance);
-            };
-        } else {
-            $this->modifiers['scopes'][$relation] = $callback;
-        }
+        $existing = $this->modifiers['scopes'][$relation] ?? null;
+
+        $this->modifiers['scopes'][$relation] = function ($instance) use ($existing, $callback) {
+            if ($existing) $existing($instance);
+            $callback($instance);
+        };
+
         return $this;
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "zeyn4loff/laravel-fluent-resources",
-  "description": "Recursive dot-notation field control and multi-language support for Laravel API Resources.",
+  "description": "Recursive dot-notation field control, multi-language support, and auto-pagination for Laravel API Resources.",
   "license": "MIT",
   "authors": [
     {
@@ -10,12 +10,23 @@
   ],
   "require": {
     "php": ">=8.2",
-    "illuminate/http": "^9.0|^10.0|^11.0|^12.0",
-    "illuminate/support": "^9.0|^10.0|^11.0|^12.0"
+    "illuminate/http": "^10.0|^11.0|^12.0",
+    "illuminate/support": "^10.0|^11.0|^12.0",
+    "illuminate/pagination": "^10.0|^11.0|^12.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.0|^9.0|^10.0",
+    "pestphp/pest": "^2.0|^3.0",
+    "pestphp/pest-plugin-laravel": "^2.0|^3.0"
   },
   "autoload": {
     "psr-4": {
       "Zeyn4loff\\FluentResources\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Zeyn4loff\\FluentResources\\Tests\\": "tests/"
     }
   },
   "extra": {
